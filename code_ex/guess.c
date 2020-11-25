@@ -29,7 +29,6 @@ int main(void)
     } while (command == "y" || command == "Y");
 
 return 0;   
-
 }
 
 void initialize_number_generator(void)
