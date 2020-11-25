@@ -2,31 +2,29 @@
 #include <stdlib.h>
 #include <time.h>
 
-
 #define MAX_NUMBER 100
 
 
-int secret_number;
-
 void initialize_number_generator(void);
-void choose_new_secert_number(void);
-void read_guesses(void);
+int new_secert_number(void);
+void read_guesses(int secret_number);
+
 
 int main(void)
 {
     char command;
-
+    int secret_number;
     printf("Guess the secret number between 1 and %d.\n\n",MAX_NUMBER);
     initialize_number_generator();
     do
     {
-        choose_new_secert_number();
+        secret_number = new_secert_number();
         printf("A new number has been chosen.\n");
-        read_guesses();
+        read_guesses(secret_number);
         printf("play again?[Y/N]");
-        scanf("%c",&command);
+        scanf(" %c",&command);
         printf("\n");
-    } while (command == "y" || command == "Y");
+    } while (command == 'y' || command == 'Y');
 
 return 0;   
 }
@@ -36,12 +34,12 @@ void initialize_number_generator(void)
     srand((unsigned)time(NULL));
 }
 
-void choose_new_secert_number(void)
+int new_secert_number(void)
 {
-    secret_number = rand() % 100 + 1;
+    return rand() % 100 + 1;
 }
 
-void read_guesses(void)
+void read_guesses(int secret_number)
 {
     int guess, num_guess = 0;
     for(;;){
